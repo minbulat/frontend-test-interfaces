@@ -1,6 +1,5 @@
 import FS from "@/interfaces/forms/FormSubmitter";
 import Form from "@/interfaces/forms/Form";
-// import axios from "axios"
 const axios = require('axios');
 
 class FormSubmitter implements FS {

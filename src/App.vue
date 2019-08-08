@@ -3,7 +3,7 @@
     #nav
       router-link(to="/") Home
       | |
-      router-link(to="/products") Products
+      router-link(to="/dashboard/products") Products
     router-view
 </template>
 
