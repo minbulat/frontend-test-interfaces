@@ -1,20 +1,26 @@
 import Form from "@/interfaces/forms/Form";
 import FormField from "@/interfaces/forms/FormField";
 
-export class AbstractForm implements Form{
+export abstract class AbstractForm implements Form {
+    abstract fields: FormField[];
+    abstract method: string;
+    abstract url: string;
+    abstract values: any;
+
     getFields(): FormField[] {
-        return [];
+        return this.fields;
     }
 
     getMethod(): string {
-        return "";
+        return this.method;
     }
 
     getUrl(): string {
-        return "";
+        return this.url;
     }
 
     getValues(): any {
+    return this.values;
     }
 
 }
