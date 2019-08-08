@@ -1,4 +1,4 @@
-# fromtend-test-interfaces
+# frontend-test-interfaces
 
 ## Project setup
 ```
