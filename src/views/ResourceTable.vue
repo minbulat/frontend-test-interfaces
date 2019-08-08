@@ -1,5 +1,6 @@
 <template lang="pug">
     .table
+        router-link(to="/dashboard/products/create") Создать
         table
             tr
                 th(v-for="field in tableData.getFields()") {{ field.getLabel() }}

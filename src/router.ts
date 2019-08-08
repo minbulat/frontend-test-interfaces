@@ -21,7 +21,7 @@ export default new Router({
         {
             path: '/dashboard/products/create',
             name: 'create',
-            component: () => import('./views/Create.vue'),
+            component: () => import('./views/ResourceCreate.vue'),
         },
         {
             path: '/dashboard/products/:id/edit',
