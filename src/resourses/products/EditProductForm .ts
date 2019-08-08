@@ -1,9 +1,9 @@
-import {AbstractForm} from "./AbstractForm";
-import FormField from "@/interfaces/forms/FormField";
+import {AbstractForm} from './AbstractForm';
+import FormField from '@/interfaces/forms/FormField';
 
 class EditProductForm extends AbstractForm {
-    url = 'https://crudpi.io/d39f7c/products/:id';
-    method = 'UPDATE';
-    fields: FormField[] = [];
-    values: any;
+    protected url = 'https://crudpi.io/d39f7c/products/:id';
+    protected method = 'UPDATE';
+    protected fields: FormField[] = [];
+    protected values: any;
 }

@@ -16,7 +16,7 @@ export default new Router({
         {
             path: '/dashboard/products',
             name: 'table',
-            component: () => import('./views/Table.vue'),
+            component: () => import('./views/ResourceTable.vue'),
         },
         {
             path: '/dashboard/products/create',
@@ -30,7 +30,7 @@ export default new Router({
         },
         {
             path: '/dashboard/products/:id/delete',
-            name: 'edit',
+            name: 'delete',
             component: () => import('./views/Delete.vue'),
         },
     ],
