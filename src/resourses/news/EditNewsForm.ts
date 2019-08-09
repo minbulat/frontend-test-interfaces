@@ -10,9 +10,10 @@ export class EditNewsForm extends EditForm {
     protected method = 'PUT';
     protected fields: FormField[] = [
         new StringField('name', 'Название'),
-        new StringField('description', 'Описание'),
-        new NumberField('price', 'Цена'),
-        new BooleanField('isActual', 'Актуальность'),
+        new StringField('text', 'Текст'),
+        new StringField('author', 'Автор'),
+        new NumberField('date', 'Дата'),
+        new BooleanField('isPublic', 'Опубликовано'),
     ];
     protected values: any;
 }

@@ -1,26 +1,31 @@
-<!--<template lang="pug">-->
-<!--    .create-->
-<!--        .field(v-for="field in tableData.getFields()") {{ field.getLabel() }} {{ field.getComponent() }}-->
-<!--</template>-->
-
 <script lang="ts">
     import Vue, {VNode} from "vue";
     import {CreateProductForm} from "@/resourses/products/CreateProductForm";
     import Form from "@/interfaces/forms/Form";
     import FormField from "@/interfaces/forms/FormField";
+    import {CreateForm} from "@/abstracts/CreateForm";
+    import resources from "@/resources";
 
     export default Vue.extend({
             name: "resource-create",
             data() {
                 return {
-                    tableData: {} as CreateProductForm,
+                    tableData: {} as CreateForm,
                     fields: [] as FormField[],
                     values: {} as any,
                 };
             },
-            components: {},//(new CreateProductForm).getFields().map(f=>f.getComponent()),
+            components: {},
             created(): void {
-                this.tableData = new CreateProductForm();
+                const tableObject = resources.find(resource => resource.name === this.$route.params.resource);
+                if (tableObject) {
+                    this.tableData = tableObject.forms.create
+                } else {
+                    console.log('404');
+                    // TODO Error 404
+                    // return this.$route.go('*')
+                }
+
 
             },
             methods: {

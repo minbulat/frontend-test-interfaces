@@ -1,6 +1,6 @@
 <template lang="pug">
-    .table
-        router-link(to="/dashboard/products/create") Создать
+    .table(v-if="isLoad")
+        router-link(:to="{name:'create',params:{resource}}") Создать
         table
             tr
                 th(v-for="field in tableData.getFields()") {{ field.getLabel() }}
@@ -8,17 +8,14 @@
             tr(v-for="row in values")
                 td(v-for="field in tableData.getFields()") {{ row[field.getName()] }}
                 td
-                    router-link(:to="{name:'edit', params: {id: row['id']}}") Изменить
+                    router-link(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
                     br
-                    router-link(:to="{name:'delete', params: {id: row['id']}}") Удалить
+                    router-link(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
 </template>
 
 <script lang="ts">
     import Vue from "vue";
-    import {ProductsTable} from "@/resourses/products/ProductsTable";
-    import Form from "@/interfaces/forms/Form";
     import FormField from "@/interfaces/forms/FormField";
-    import {AbstractForm} from "@/abstracts/AbstractForm";
     import resources from "@/resources";
     import {Table} from "@/abstracts/Table";
 
@@ -26,30 +23,43 @@
             name: "resource-table",
             data() {
                 return {
+                    resource: '',
                     tableData: {} as Table,
                     fields: [] as FormField[],
                     values: [],
+                    isLoad: false
                 };
             },
-            created(): void {
-                const tableObject = resources.find(resource => resource.name === this.$route.params.resource);
-                if (tableObject) {
-                    this.tableData = tableObject.forms.table
-                } else {
-                    console.log('404');
-                    // TODO Error 404
-                    // return this.$route.go('*')
-                }
+            mounted(): void {
 
+                this.resource = this.$route.params.resource;
+                this.updateData();
 
             },
-            mounted(): void {
-                this.tableData.fetchVales()
-                    .then(response => {
-                            this.values = response.data;
-                        }
-                    );
+            beforeRouteUpdate(to, from, next) {
+                this.resource = to.params.resource;
+                this.isLoad = false;
+                this.updateData();
+                next();
+            },
+            methods: {
+                updateData: function () {
+                    const tableObject = resources.find(resource => resource.name === this.resource);
+                    if (tableObject) {
+                        this.tableData = tableObject.forms.table
+                    } else {
+                        console.log('404');
+                        // TODO Error 404
+                        // return this.$route.go('*')
+                    }
 
+                    this.tableData.fetchVales()
+                        .then(response => {
+                                this.values = response.data;
+                                this.isLoad = true;
+                            }
+                        );
+                }
             }
         },
     );

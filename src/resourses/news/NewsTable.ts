@@ -8,11 +8,11 @@ export class NewsTable extends Table {
     protected url = 'https://crudpi.io/d39f7c/news';
     protected method = 'GET';
     protected fields: FormField[] = [
-        new NumberField('id', 'ИД'),
         new StringField('name', 'Название'),
-        new StringField('description', 'Описание'),
-        new NumberField('price', 'Цена'),
-        new BooleanField('isActual', 'Актуальность'),
+        new StringField('text', 'Текст'),
+        new StringField('author', 'Автор'),
+        new NumberField('date', 'Дата'),
+        new BooleanField('isPublic', 'Опубликовано'),
     ];
     protected values: any;
 
