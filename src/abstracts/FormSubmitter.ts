@@ -1,6 +1,8 @@
 import FS from '@/interfaces/forms/FormSubmitter';
 import Form from '@/interfaces/forms/Form';
 
+// TODO Исправить
+// tslint:disable-next-line:no-var-requires
 const axios = require('axios');
 
 export default class FormSubmitter implements FS {

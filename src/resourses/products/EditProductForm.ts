@@ -6,7 +6,7 @@ import {ProductsFormSubmitter} from "@/resourses/products/ProductsFormSubmitter"
 import {EditForm} from "@/abstracts/EditForm";
 
 export class EditProductForm extends EditForm {
-    protected id: Number;
+    protected id: number;
     protected url = 'https://crudpi.io/d39f7c/products/';
     protected method = 'PUT';
     protected fields: FormField[] = [
@@ -17,13 +17,13 @@ export class EditProductForm extends EditForm {
     ];
     protected values: any;
 
-    constructor(id: Number = 0) {
+    constructor(id: number = 0) {
         super();
         this.id = id;
-    };
+    }
 
-    getUrl(): string {
-        return this.url + this.id
+    public getUrl(): string {
+        return this.url + this.id;
     }
 
     public saveVales(values: any[]): Promise<any> {

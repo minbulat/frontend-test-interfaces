@@ -14,14 +14,14 @@ import {NewsTable} from "@/resourses/news/NewsTable";
 
 // TODO interface to type
 interface IResource {
-    name: String,
+    name: string;
     forms: {
         create: CreateForm,
         edit: EditForm,
         // delete: AbstractForm,
         table: Table,
         submitter: FormSubmitter,
-    }
+    };
 }
 
 const resources: IResource[] = [
@@ -33,7 +33,7 @@ const resources: IResource[] = [
             // delete: new Delete,
             submitter: new ProductsFormSubmitter(),
             table: new ProductsTable(),
-        }
+        },
     },
     {
         name: 'news',
@@ -43,8 +43,8 @@ const resources: IResource[] = [
             // delete: new Delete,
             submitter: new FormSubmitter(),
             table: new NewsTable(),
-        }
-    }
+        },
+    },
 ];
 
 export default resources;

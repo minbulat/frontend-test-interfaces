@@ -25,7 +25,7 @@ export default interface Form {
   /**
    * Возвращает список значений полей формы по умолчанию (обычный объект).
    *
-   @return {object}
+   * @return {object}
    */
   getValues(): any;
 }

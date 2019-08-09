@@ -1,6 +1,9 @@
 import Form from '@/interfaces/forms/Form';
 import FormSubmitter from "@/abstracts/FormSubmitter";
 
+
+// TODO Исправить
+// tslint:disable-next-line:no-var-requires
 const axios = require('axios');
 
 export class ProductsFormSubmitter implements FormSubmitter {

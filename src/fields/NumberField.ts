@@ -2,23 +2,23 @@ import FormField from "@/interfaces/forms/FormField";
 import NF from "@/views/fields/NumberField";
 
 export class NumberField implements FormField {
-    label: string;
-    name: string;
+    public label: string;
+    public name: string;
 
-    constructor(name: string, label: string,) {
+    constructor(name: string, label: string) {
         this.label = label;
         this.name = name;
     }
 
-    getComponent(): any {
+    public getComponent(): any {
         return NF;
     }
 
-    getLabel(): string {
-        return this.label
+    public getLabel(): string {
+        return this.label;
     }
 
-    getName(): string {
+    public getName(): string {
         return this.name;
     }
 
