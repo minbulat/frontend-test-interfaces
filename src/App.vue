@@ -2,8 +2,10 @@
   #app
     #nav
       router-link(to="/") Home
-      | |
+      | &nbsp;|&nbsp;
       router-link(to="/dashboard/products") Products
+      | &nbsp;|&nbsp;
+      router-link(to="/dashboard/news") News
     router-view
 </template>
 

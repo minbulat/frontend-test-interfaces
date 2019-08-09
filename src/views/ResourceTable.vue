@@ -18,14 +18,15 @@
     import {ProductsTable} from "@/resourses/products/ProductsTable";
     import Form from "@/interfaces/forms/Form";
     import FormField from "@/interfaces/forms/FormField";
-    import {AbstractForm} from "@/resourses/products/AbstractForm";
+    import {AbstractForm} from "@/abstracts/AbstractForm";
     import resources from "@/resources";
+    import {Table} from "@/abstracts/Table";
 
     export default Vue.extend({
             name: "resource-table",
             data() {
                 return {
-                    tableData: {} as AbstractForm,
+                    tableData: {} as Table,
                     fields: [] as FormField[],
                     values: [],
                 };

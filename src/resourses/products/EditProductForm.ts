@@ -1,11 +1,11 @@
-import {AbstractForm} from './AbstractForm';
 import FormField from '@/interfaces/forms/FormField';
 import {StringField} from "@/fields/StringField";
 import {BooleanField} from "@/fields/BooleanField";
 import {NumberField} from "@/fields/NumberField";
-import {FormSubmitter} from "@/resourses/products/FormSubmitter";
+import {ProductsFormSubmitter} from "@/resourses/products/ProductsFormSubmitter";
+import {EditForm} from "@/abstracts/EditForm";
 
-export class EditProductForm extends AbstractForm {
+export class EditProductForm extends EditForm {
     protected id: Number;
     protected url = 'https://crudpi.io/d39f7c/products/';
     protected method = 'PUT';
@@ -27,7 +27,7 @@ export class EditProductForm extends AbstractForm {
     }
 
     public saveVales(values: any[]): Promise<any> {
-        return new FormSubmitter().submit(this, values); // TODO values
+        return new ProductsFormSubmitter().submit(this, values); // TODO values
 
     }
 }
