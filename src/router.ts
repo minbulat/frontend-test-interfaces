@@ -26,12 +26,12 @@ export default new Router({
         {
             path: '/dashboard/products/:id/edit',
             name: 'edit',
-            component: () => import('./views/Edit.vue'),
+            component: () => import('./views/ResourceEdit.vue'),
         },
         {
             path: '/dashboard/products/:id/delete',
             name: 'delete',
-            component: () => import('./views/Delete.vue'),
+            component: () => import('./views/ResourceDelete.vue'),
         },
     ],
 });
