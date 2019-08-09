@@ -1,7 +1,7 @@
 <template lang="pug">
     .string
         label(:for="name") {{ label }}
-        input(:id="name" type="input" v-model="value")
+        input(:id="name" type="text" v-model="value")
 
 </template>
 

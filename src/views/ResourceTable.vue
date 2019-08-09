@@ -4,8 +4,13 @@
         table
             tr
                 th(v-for="field in tableData.getFields()") {{ field.getLabel() }}
+                th Действия
             tr(v-for="row in values")
                 td(v-for="field in tableData.getFields()") {{ row[field.getName()] }}
+                td
+                    router-link(:to="{name:'edit', params: {id: row['id']}}") Изменить
+                    br
+                    router-link(:to="{name:'delete', params: {id: row['id']}}") Удалить
 </template>
 
 <script lang="ts">

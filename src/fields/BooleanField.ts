@@ -1,4 +1,5 @@
 import FormField from "@/interfaces/forms/FormField";
+import BF from "@/views/fields/BooleanField";
 
 export class BooleanField implements FormField {
     label: string;
@@ -10,6 +11,7 @@ export class BooleanField implements FormField {
     }
 
     getComponent(): any {
+        return BF;
     }
 
     getLabel(): string {

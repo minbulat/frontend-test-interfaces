@@ -1,4 +1,5 @@
 import FormField from "@/interfaces/forms/FormField";
+import NF from "@/views/fields/NumberField";
 
 export class NumberField implements FormField {
     label: string;
@@ -10,6 +11,7 @@ export class NumberField implements FormField {
     }
 
     getComponent(): any {
+        return NF;
     }
 
     getLabel(): string {

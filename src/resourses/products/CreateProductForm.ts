@@ -11,8 +11,8 @@ export class CreateProductForm extends AbstractForm {
     protected fields: FormField[] = [
         new StringField('name', 'Название'),
         new StringField('description', 'Описание'),
-        new StringField('price', 'Цена'),
-        new StringField('isActual', 'Актуальность'),
+        new NumberField('price', 'Цена'),
+        new BooleanField('isActual', 'Актуальность'),
     ];
     protected values: any;
 
