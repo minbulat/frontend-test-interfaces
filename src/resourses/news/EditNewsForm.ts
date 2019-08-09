@@ -16,4 +16,6 @@ export class EditNewsForm extends EditForm {
         new BooleanField('isPublic', 'Опубликовано'),
     ];
     protected values: any;
+
+
 }

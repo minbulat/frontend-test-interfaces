@@ -31,7 +31,6 @@ export default Vue.extend({
             };
         },
         mounted(): void {
-
             this.resource = this.$route.params.resource;
             this.updateData();
 
