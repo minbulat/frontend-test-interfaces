@@ -13,6 +13,7 @@
                     tableData: {} as CreateForm,
                     fields: [] as FormField[],
                     values: {} as any,
+                    isLoaded: false,
                 };
             },
             components: {},
@@ -29,35 +30,39 @@
 
             },
             methods: {
-                onChange: function(name: string, value: any) {
+                onChange: function (name: string, value: any) {
 
                     this.values[name] = value;
                     console.log("value changed", this.values);
                 }
             },
             render(createElement): VNode {
-                return createElement("div",
-                    [this.tableData.getFields()
-                        .map((field) => {
-                            return createElement(field.getComponent(), {
-                                props: {
-                                    label: field.getLabel(),
-                                    name: field.getName(),
-                                    onChange: this.onChange,
-                                }
+                if (this.isLoaded) {
+                    return createElement("div",
+                        [this.tableData.getFields()
+                            .map((field) => {
+                                return createElement(field.getComponent(), {
+                                    props: {
+                                        label: field.getLabel(),
+                                        name: field.getName(),
+                                        onChange: this.onChange,
+                                    }
 
-                            });
-                        }),
-                        createElement("button", {
-                            on: {
-                                click: () => {
-                                    this.tableData.saveVales([this.values]);
-                                }
-                            },
+                                });
+                            }),
+                            createElement("button", {
+                                on: {
+                                    click: () => {
+                                        this.tableData.saveVales([this.values]);
+                                    }
+                                },
 
-                        }, "Сохранить")
-                    ]
-                );
+                            }, "Сохранить")
+                        ]
+                    );
+                } else {
+                    return createElement("div");
+                }
             }
         },
     );

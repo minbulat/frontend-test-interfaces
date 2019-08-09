@@ -11,6 +11,7 @@
                     tableData: {} as EditProductForm,
                     fields: [] as FormField[],
                     values: {} as any,
+                    isLoaded: false,
                 };
             },
             components: {},
@@ -27,29 +28,34 @@
                 }
             },
             render(createElement): VNode {
-                return createElement("div",
-                    [this.tableData.getFields()
-                        .map((field) => {
-                            return createElement(field.getComponent(), {
-                                props: {
-                                    label: field.getLabel(),
-                                    name: field.getName(),
-                                    // defaultValue:
-                                    onChange: this.onChange,
-                                }
+                if(this.isLoaded) {
+                    return createElement("div",
+                        [this.tableData.getFields()
+                            .map((field) => {
+                                return createElement(field.getComponent(), {
+                                    props: {
+                                        label: field.getLabel(),
+                                        name: field.getName(),
+                                        // defaultValue:
+                                        onChange: this.onChange,
+                                    }
 
-                            });
-                        }),
-                        createElement("button", {
-                            on: {
-                                click: () => {
-                                    this.tableData.saveVales([this.values]);
-                                }
-                            },
+                                });
+                            }),
+                            createElement("button", {
+                                on: {
+                                    click: () => {
+                                        this.tableData.saveVales([this.values]);
+                                    }
+                                },
 
-                        }, "Сохранить")
-                    ]
-                );
+                            }, "Сохранить")
+                        ]
+                    );
+                }
+                else {
+                    return createElement("div");
+                }
             }
         },
     );
