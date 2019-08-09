@@ -14,22 +14,22 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/dashboard/products',
+            path: '/dashboard/:resource',
             name: 'table',
             component: () => import('./views/ResourceTable.vue'),
         },
         {
-            path: '/dashboard/products/create',
+            path: '/dashboard/:resource/create',
             name: 'create',
             component: () => import('./views/ResourceCreate.vue'),
         },
         {
-            path: '/dashboard/products/:id/edit',
+            path: '/dashboard/:resource/:id/edit',
             name: 'edit',
             component: () => import('./views/ResourceEdit.vue'),
         },
         {
-            path: '/dashboard/products/:id/delete',
+            path: '/dashboard/:resource/:id/delete',
             name: 'delete',
             component: () => import('./views/ResourceDelete.vue'),
         },

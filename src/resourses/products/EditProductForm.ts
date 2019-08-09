@@ -17,7 +17,7 @@ export class EditProductForm extends AbstractForm {
     ];
     protected values: any;
 
-    constructor(id: Number) {
+    constructor(id: Number = 0) {
         super();
         this.id = id;
     };

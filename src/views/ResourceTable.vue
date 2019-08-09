@@ -18,18 +18,28 @@
     import {ProductsTable} from "@/resourses/products/ProductsTable";
     import Form from "@/interfaces/forms/Form";
     import FormField from "@/interfaces/forms/FormField";
+    import {AbstractForm} from "@/resourses/products/AbstractForm";
+    import resources from "@/resources";
 
     export default Vue.extend({
             name: "resource-table",
             data() {
                 return {
-                    tableData: {} as ProductsTable,
+                    tableData: {} as AbstractForm,
                     fields: [] as FormField[],
                     values: [],
                 };
             },
             created(): void {
-                this.tableData = new ProductsTable();
+                const tableObject = resources.find(resource => resource.name === this.$route.params.resource);
+                if (tableObject) {
+                    this.tableData = tableObject.forms.table
+                } else {
+                    console.log('404');
+                    // TODO Error 404
+                    // return this.$route.go('*')
+                }
+
 
             },
             mounted(): void {
