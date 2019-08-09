@@ -1,34 +1,20 @@
 # frontend-test
 
-## Project setup
+## Скрипты
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
-```
-
-### Compiles and minifies for production
-```
 npm run build
-```
-
-### Run your tests
-```
 npm run test
-```
-
-### Lints and fixes files
-```
 npm run lint
-```
-
-### Run your unit tests
-```
 npm run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Создание нового ресурса
+1. Создать файлы:
+   * `/resources/{ResourceName}/AbstractForm`
+   * `/resources/{ResourceName}/CreateProductForm`
+   * `/resources/{ResourceName}/EditProductForm`
+   * `/resources/{ResourceName}/FormSubmitter`
+   * `/resources/{ResourceName}/ProductsTable`
+2. Добавить в файл `resources.ts` экземпляры созданных классов и обозначение в пути.
