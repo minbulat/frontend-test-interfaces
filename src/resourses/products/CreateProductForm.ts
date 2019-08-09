@@ -16,8 +16,8 @@ export class CreateProductForm extends AbstractForm {
     ];
     protected values: any;
 
-    public saveVales(): Promise<any> {
-        return new FormSubmitter().submit(this, []);
+    public saveVales(values: any[]): Promise<any> {
+        return new FormSubmitter().submit(this, values); // TODO values
 
     }
 }

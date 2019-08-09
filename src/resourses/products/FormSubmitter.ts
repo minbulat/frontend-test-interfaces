@@ -8,7 +8,7 @@ export class FormSubmitter implements FS {
         return axios({
             method: form.getMethod(),
             url: form.getUrl(),
-            data: values, // TODO Выяснить про значения
+            data: values.length === 1 ? values[0] : values, // TODO Выяснить про значения
         });
     }
 

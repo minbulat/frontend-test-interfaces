@@ -15,7 +15,7 @@
                 return {
                     tableData: {} as CreateProductForm,
                     fields: [] as FormField[],
-                    values: [],
+                    values: {} as any,
                 };
             },
             components: {},//(new CreateProductForm).getFields().map(f=>f.getComponent()),
@@ -23,18 +23,35 @@
                 this.tableData = new CreateProductForm();
 
             },
+            methods: {
+                onChange: function(name: string, value: any) {
+
+                    this.values[name] = value;
+                    console.log("value changed", this.values);
+                }
+            },
             render(createElement): VNode {
                 return createElement("div",
-                    this.tableData.getFields()
-                        .map(function(field) {
+                    [this.tableData.getFields()
+                        .map((field) => {
                             return createElement(field.getComponent(), {
                                 props: {
                                     label: field.getLabel(),
                                     name: field.getName(),
+                                    onChange: this.onChange,
                                 }
 
                             });
-                        })
+                        }),
+                        createElement("button", {
+                            on: {
+                                click: () => {
+                                    this.tableData.saveVales([this.values]);
+                                }
+                            },
+
+                        }, "Сохранить")
+                    ]
                 );
             }
         },
