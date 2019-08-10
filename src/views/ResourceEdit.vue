@@ -12,7 +12,7 @@ export default Vue.extend({
                 form: {} as EditForm,
                 fields: [] as FormField[],
                 id: null as number | null,
-                values: {} as any,
+                values: {} as any,  // TODO Del
                 isLoad: false,
                 resource: null as string | null,
                 error: [] as string[],
@@ -26,7 +26,6 @@ export default Vue.extend({
         mounted(): void {
             this.resource = this.$route.params.resource;
             this.updateData();
-
         },
         beforeRouteUpdate(to, from, next) {
             this.resource = to.params.resource;
@@ -70,7 +69,7 @@ export default Vue.extend({
             saveValues() {
                 this.isLoad = false;
                 this.error = [];
-                this.form.saveValues([this.values])
+                this.form.saveValues(this.values)
                     .then(() => {
                         this.$router.push({name: 'table', params: {resource: this.resource as string}});
                     })
