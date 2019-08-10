@@ -7,7 +7,7 @@ import {Method} from "axios";
 
 export class EditNewsForm extends EditForm {
     public dataFetchMethod: Method = 'GET';
-    public dataFetchUrl: string = '';
+    public dataFetchUrl: string = 'https://crudpi.io/d39f7c/news/';
     // protected id: Number;
     protected url = 'https://crudpi.io/d39f7c/news/';
     protected method: Method = 'PUT';
@@ -19,6 +19,5 @@ export class EditNewsForm extends EditForm {
         new BooleanField('isPublic', 'Опубликовано'),
     ];
     protected values: any;
-
 
 }
