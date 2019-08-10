@@ -1,9 +1,12 @@
 import Form from '@/interfaces/forms/Form';
 import FormField from '@/interfaces/forms/FormField';
+import {Method} from "axios";
+
+
 
 export abstract class AbstractForm implements Form {
     protected abstract fields: FormField[];
-    protected abstract method: string;
+    protected abstract method: Method;
     protected abstract url: string;
     protected abstract values: any;
 
@@ -11,7 +14,8 @@ export abstract class AbstractForm implements Form {
         return this.fields;
     }
 
-    public getMethod(): string {
+    public getMethod(): Method {
+
         return this.method;
     }
 

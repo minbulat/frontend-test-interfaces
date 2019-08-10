@@ -1,30 +1,24 @@
 import {AbstractForm} from './AbstractForm';
 import FormSubmitter from "./FormSubmitter";
-
-// TODO Исправить
-// tslint:disable-next-line:no-var-requires
-const axios = require('axios');
+import axios, {Method} from 'axios';
 
 export abstract class EditForm extends AbstractForm {
-    abstract dataFetchMethod: string;
-    abstract dataFetchUrl: string;
+    public abstract dataFetchMethod: Method;
+    public abstract dataFetchUrl: string;
 
-    public getDataFetchMethod(): string {
+    public getDataFetchMethod(): Method {
         return this.dataFetchMethod;
-    };
+    }
 
     public getDataFetchUrl(): string {
         return this.dataFetchUrl;
-    };
+    }
 
     public fetchVales(): Promise<any> {
-        const ax = axios({
+        return axios.request({
             method: this.getDataFetchMethod(),
             url: this.getDataFetchUrl(),
-        });
-
-        return ax;
-
+        }).then((response) => response.data);
     }
 
     public saveVales(values: any[]): Promise<any> {

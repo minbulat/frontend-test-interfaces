@@ -5,10 +5,11 @@ import {NumberField} from '@/fields/NumberField';
 import {BooleanField} from '@/fields/BooleanField';
 import {ProductsFormSubmitter} from './ProductsFormSubmitter';
 import {Table} from "@/abstracts/Table";
+import {Method} from "axios";
 
 export class ProductsTable extends Table {
     protected url = 'https://crudpi.io/d39f7c/products';
-    protected method = 'GET';
+    protected method: Method = 'GET';
     protected fields: FormField[] = [
         new NumberField('id', 'ИД'),
         new StringField('name', 'Название'),
@@ -18,8 +19,8 @@ export class ProductsTable extends Table {
     ];
     protected values: any;
 
-    public fetchVales(): Promise<any> {
-        return new ProductsFormSubmitter().submit(this, []);
-
-    }
+    // public fetchVales(): Promise<any> {
+    //     return new ProductsFormSubmitter().submit(this, []);
+    //
+    // }
 }

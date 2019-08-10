@@ -53,8 +53,8 @@ export default Vue.extend({
                 }
 
                 this.tableData.fetchVales()
-                    .then((response) => {
-                            this.values = response.data;
+                    .then((data) => {
+                            this.values = data;
                             this.isLoad = true;
                         },
                     );
