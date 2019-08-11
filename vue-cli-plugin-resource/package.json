@@ -1,0 +1,9 @@
+{
+  "name": "vue-cli-plugin-resource",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Bulat Minnemullin",
+  "license": "ISC"
+}

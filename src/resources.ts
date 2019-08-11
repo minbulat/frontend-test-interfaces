@@ -3,15 +3,15 @@ import {CreateForm} from "@/abstracts/CreateForm";
 import {EditForm} from "@/abstracts/EditForm";
 import {Table} from "@/abstracts/Table";
 
-import CreateProductForm from "@/resourses/products/CreateProductForm";
-import EditProductForm from "@/resourses/products/EditProductForm";
-import ProductsFormSubmitter from "@/resourses/products/ProductsFormSubmitter";
-import ProductsTable from "@/resourses/products/ProductsTable";
+import CreateProductForm from "@/resources/products/CreateProductForm";
+import EditProductForm from "@/resources/products/EditProductForm";
+import ProductsFormSubmitter from "@/resources/products/ProductsFormSubmitter";
+import ProductsTable from "@/resources/products/ProductsTable";
 
-import CreateNewsForm from "@/resourses/news/CreateNewsForm";
-import EditNewsForm from "@/resourses/news/EditNewsForm";
-import NewsTable from "@/resourses/news/NewsTable";
-import NewsFormSubmitter from '@/resourses/news/NewsFormSubmitter';
+import CreateNewsForm from "@/resources/news/CreateNewsForm";
+import EditNewsForm from "@/resources/news/EditNewsForm";
+import NewsTable from "@/resources/news/NewsTable";
+import NewsFormSubmitter from '@/resources/news/NewsFormSubmitter';
 
 // TODO interface to type
 interface IResource {

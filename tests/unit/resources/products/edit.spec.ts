@@ -1,4 +1,4 @@
-import EditProductForm from '@/resourses/products/EditProductForm';
+import EditProductForm from '@/resources/products/EditProductForm';
 
 describe('ProductsEdit', () => {
     it('setId сохраняет значения в id', () => {
