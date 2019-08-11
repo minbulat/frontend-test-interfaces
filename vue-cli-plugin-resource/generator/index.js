@@ -1,12 +1,12 @@
+const fs = require('fs');
 module.exports = (api, options) => {
     if (options.name) {
         const nameLower = options.name[0].toLowerCase() + options.name.slice(1);
         const nameUpper = options.name[0].toUpperCase() + options.name.slice(1);
-        api.render('./template', {name: nameLower, nameUpper})
 
-        if (options.name) {
+        if (!fs.readdirSync('src/resources').includes(nameLower)) {
+            api.render('./template', {name: nameLower, nameUpper});
             api.onCreateComplete(() => {
-                const fs = require('fs');
                 fs.renameSync('src/resources/newResource', 'src/resources/' + nameLower);
                 const oldNewNames = [
                     {old: 'CreateResourceForm', new: `Create${nameUpper}Form`},
@@ -26,7 +26,7 @@ module.exports = (api, options) => {
         forms: {
             create: new Create${nameUpper}Form(),
             edit: new Edit${nameUpper}Form(),
-            delete: new Delete${nameUpper}Form,
+            delete: new Delete${nameUpper}Form(),
             submitter: new ${nameUpper}FormSubmitter(),
             table: new ${nameUpper}Table(),
         },
@@ -35,7 +35,7 @@ module.exports = (api, options) => {
                     `import Edit${nameUpper}Form from "@/resources/${nameLower}/Edit${nameUpper}Form";`,
                     `import Delete${nameUpper}Form from "@/resources/${nameLower}/Delete${nameUpper}Form";`,
                     `import ${nameUpper}Table from "@/resources/${nameLower}/${nameUpper}Table";`,
-                    `import ${nameUpper}FormSubmitter from '@/resources/${nameLower}/${nameUpper}FormSubmitter';`,].join('\n') + '\n';
+                    `import ${nameUpper}FormSubmitter from '@/resources/${nameLower}/${nameUpper}FormSubmitter';`,].join('\n') + '\n\n';
 
 
                 let newContentResources = contentResources.toString().replace(resourceZone, resource + resourceZone);
@@ -44,13 +44,14 @@ module.exports = (api, options) => {
 
             })
         } else {
-            console.log('Eeeee222')
+            console.error('Ошибка: Папка уже существует')
             // TODO else
         }
     } else {
-        console.log('Eeeee')
+        console.error('Ошибка: Введите название')
         // TODO else
     }
 
 
-};
+}
+;
