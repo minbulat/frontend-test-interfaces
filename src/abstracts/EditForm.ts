@@ -1,6 +1,6 @@
 import {AbstractForm} from './AbstractForm';
 import FormSubmitter from "./FormSubmitter";
-import axios, {Method} from 'axios';
+import {Method} from 'axios';
 
 export abstract class EditForm extends AbstractForm {
     public abstract dataFetchMethod: Method;
@@ -22,8 +22,8 @@ export abstract class EditForm extends AbstractForm {
         return this.url + this.id;
     }
 
-    public fetchVales(): Promise<any> {
-        return axios.request({
+    public fetchValues(): Promise<any> {
+        return this.axios.request({
             method: this.getDataFetchMethod(),
             url: this.getDataFetchUrl(),
         }).then((response) => {
@@ -33,7 +33,7 @@ export abstract class EditForm extends AbstractForm {
     }
 
     public saveValues(values: any): Promise<any> {
-        return new FormSubmitter().submit(this, values); // TODO values
+        return new FormSubmitter().submit(this, values);
 
     }
 }

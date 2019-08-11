@@ -52,7 +52,7 @@ export default Vue.extend({
                     // return this.$route.go('*')
                 }
 
-                this.tableData.fetchVales()
+                this.tableData.fetchValues()
                     .then((data) => {
                             this.values = data;
                             this.isLoad = true;

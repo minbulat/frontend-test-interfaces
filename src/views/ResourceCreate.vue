@@ -49,7 +49,7 @@
                 saveValues() {
                     this.isLoad = false;
                     this.error = [];
-                    console.log('create-save', this.values);
+                    // console.log('create-save', this.values);
                     this.form.saveValues(this.values)
                         .then(() => {
                             this.$router.push({name: 'table', params: {resource: this.resource as string}});
@@ -92,9 +92,9 @@
         },
     );
 </script>
-<style>
-    .create {
-        text-align: left;
-    }
+<style lang="stylus">
+    .create
+        text-align left
+
 </style>
 
