@@ -28,10 +28,14 @@ export abstract class EditForm extends AbstractForm {
         return this.axios.request({
             method: this.getDataFetchMethod(),
             url: this.getDataFetchUrl(),
-        }).then((response) => {
-            this.values = dot.dot(response.data);
-            return this.values;
-        });
+        })
+            .then((response) => {
+                return response.data;
+            })
+            .then((data) => {
+                this.values = {...this.values, ...dot.dot(data)};
+                return this.values;
+            });
     }
 
     public saveValues(submitter: FormSubmitter, values: any): Promise<any> {

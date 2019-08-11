@@ -19,6 +19,10 @@ export default class EditNewsForm extends EditForm {
         new DateField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];
-    public values: any;
+    public values: any = {
+        'name': 'Название по-умолчаню',
+        'date': Date(),
+        'isPublic': true,
+    };
 
 }

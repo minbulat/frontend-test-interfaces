@@ -6,19 +6,21 @@
         router-view
 </template>
 <script lang="ts">
-import Vue from 'vue';
-import resources from "@/resources";
+    import Vue from "vue";
+    import resources from "@/resources";
 
 
-export default Vue.extend({
-    name: 'app',
-    data: {
-        resources: {},
-    },
-    created(): void {
-        this.resources = resources;
-    },
-});
+    export default Vue.extend({
+        name: "app",
+        data() {
+            return {
+                resources: {},
+            };
+        },
+        created(): void {
+            this.resources = resources;
+        },
+    });
 </script>
 
 <style lang="stylus">
@@ -36,8 +38,10 @@ export default Vue.extend({
     #nav
         padding 30px
         text-align center
+
         .button
             margin 10px
+
         .router-link-exact-active
             background-color white
             color var(--color-main)
@@ -55,11 +59,13 @@ export default Vue.extend({
     .wrapper
         max-width calc(100% - 20px)
         margin 0 auto
+
     .field
         input
             padding 10px
             margin 10px 0
             width calc(100% - 20px)
+
     h2
         text-align center
         font-weight normal

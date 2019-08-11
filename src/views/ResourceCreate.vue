@@ -88,6 +88,7 @@ export default Vue.extend({
                                     props: {
                                         label: field.getLabel(),
                                         name: field.getName(),
+                                        defaultValue: this.form.getValues() && this.form.getValues()[field.getName()],
                                         onChange: this.onChange,
                                     },
 

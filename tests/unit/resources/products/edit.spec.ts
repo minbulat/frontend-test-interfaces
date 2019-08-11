@@ -13,7 +13,7 @@ describe('ProductsEdit', () => {
     });
     it('getDataFetchMethod возвращает значение GET', () => {
         const epf = new EditProductForm();
-        expect(epf.getDataFetchMethod()).toEqual('GET');
+        expect(epf.getDataFetchMethod()).toEqual(epf.dataFetchMethod);
     });
     it('fetchValues сохраняет значения в values', async () => {
         const epf = new EditProductForm();

@@ -59,7 +59,6 @@ export default Vue.extend({
                     this.form.fetchValues()
                         .then((data) => {
                                 this.values = data;
-                                console.log(this.values);
                                 this.isLoad = true;
                             },
                         )
