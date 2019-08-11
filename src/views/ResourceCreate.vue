@@ -1,71 +1,96 @@
 <script lang="ts">
-import Vue, {VNode} from "vue";
-import {CreateProductForm} from "@/resourses/products/CreateProductForm";
-import Form from "@/interfaces/forms/Form";
-import FormField from "@/interfaces/forms/FormField";
-import {CreateForm} from "@/abstracts/CreateForm";
-import resources from "@/resources";
+    import Vue, {VNode} from "vue";
+    import FormField from "@/interfaces/forms/FormField";
+    import {CreateForm} from "@/abstracts/CreateForm";
+    import resources from "@/resources";
+    import Error from "@/components/Error.vue";
 
-export default Vue.extend({
-        name: "resource-create",
-        data() {
-            return {
-                tableData: {} as CreateForm,
-                fields: [] as FormField[],
-                values: {} as any,
-                isLoaded: false,
-            };
-        },
-        components: {},
-        created(): void {
-            const tableObject = resources.find((resource) => resource.name === this.$route.params.resource);
-            if (tableObject) {
-                this.tableData = tableObject.forms.create;
-            } else {
-                // console.log('404');
-                // TODO Error 404
-                // return this.$route.go('*')
-            }
-
-
-        },
-        methods: {
-            onChange(name: string, value: any) {
-
-                this.values[name] = value;
-                // console.log("value changed", this.values);
+    export default Vue.extend({
+            name: "resource-create",
+            data() {
+                return {
+                    form: {} as CreateForm,
+                    fields: [] as FormField[],
+                    values: {} as any,
+                    isLoad: false,
+                    resource: null as string | null,
+                    error: [] as string[],
+                };
             },
-        },
-        render(createElement): VNode {
-            if (this.isLoaded) {
-                return createElement("div",
-                    [this.tableData.getFields()
-                        .map((field) => {
-                            return createElement(field.getComponent(), {
-                                props: {
-                                    label: field.getLabel(),
-                                    name: field.getName(),
-                                    onChange: this.onChange,
-                                },
+            components: {},
+            mounted(): void {
+                this.resource = this.$route.params.resource;
+                this.updateData();
+            },
+            beforeRouteUpdate(to, from, next) {
+                this.resource = to.params.resource;
+                this.isLoad = false;
+                this.updateData();
+                next();
+            },
+            methods: {
+                updateData() {
+                    const tableObject = resources.find((resource) => resource.name === this.resource);
+                    if (tableObject) {
+                        this.form = tableObject.forms.create;
+                        this.isLoad = true;
+                    } else {
+                        // console.log('404');
+                        // TODO Error 404
+                        // return this.$route.go('*')
+                        this.error = ['Такого ресурса нет'];
+                    }
+                },
+                onChange(name: string, value: any) {
 
-                            });
-                        }),
-                        createElement("button", {
+                    this.values[name] = value;
+                    // console.log("value changed", this.values);
+                },
+                saveValues() {
+                    this.isLoad = false;
+                    this.error = [];
+                    console.log('create-save', this.values);
+                    this.form.saveValues(this.values)
+                        .then(() => {
+                            this.$router.push({name: 'table', params: {resource: this.resource as string}});
+                        })
+                        .catch((error) => {
+                            this.isLoad = true;
+                            this.error = ['Не удалось сохранить', error.text];
+                        });
+                },
+            },
+            render(createElement): VNode {
+                return createElement("div",
+                    {class: ['create']},
+                    [
+                        this.error.length ? createElement(Error, {
+                            props: {
+                                error: this.error,
+                            },
+                        }) : null,
+                        this.isLoad ? this.form.getFields()
+                            .map((field) => {
+                                return createElement(field.getComponent(), {
+                                    props: {
+                                        label: field.getLabel(),
+                                        name: field.getName(),
+                                        onChange: this.onChange,
+                                    },
+
+                                });
+                            }) : null,
+                        this.isLoad ? createElement("button", {
                             on: {
-                                click: () => {
-                                    this.tableData.saveVales([this.values]);
-                                },
+                                click: this.saveValues,
                             },
 
-                        }, "Сохранить"),
+                        }, "Сохранить") : null,
                     ],
                 );
-            } else {
-                return createElement("div");
-            }
+            },
         },
-    },
-);
+    );
 </script>
 <style>
     .create {

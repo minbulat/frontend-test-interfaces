@@ -1,4 +1,3 @@
-import {AbstractForm} from '../../abstracts/AbstractForm';
 import FormField from '@/interfaces/forms/FormField';
 import {StringField} from '@/fields/StringField';
 import {NumberField} from '@/fields/NumberField';
@@ -9,7 +8,7 @@ import {Method} from "axios";
 
 export class CreateProductForm extends CreateForm {
     protected url = 'https://crudpi.io/d39f7c/products';
-    protected method: Method = 'GET';
+    protected method: Method = 'POST';
     protected fields: FormField[] = [
         new StringField('name', 'Название'),
         new StringField('description', 'Описание'),

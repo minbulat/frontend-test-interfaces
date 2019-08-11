@@ -1,6 +1,6 @@
 <template lang="pug">
     .error
-        p(v-for="err in error") {{ error }}
+        p(v-for="err in error") {{ err }}
     </div>
 </template>
 
@@ -9,9 +9,7 @@
 
     export default Vue.extend({
         name: 'error',
-        props: {
-            error: [],
-        },
+        props: ['error'],
     });
 </script>
 
@@ -19,4 +17,5 @@
     .error
         color white
         background crimson
+        padding 10px 20px
 </style>
