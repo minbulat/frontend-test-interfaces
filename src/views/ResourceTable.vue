@@ -1,18 +1,20 @@
 <template lang="pug">
-    .table(v-if="isLoad")
-        h2 Ресурс &laquo;{{ resource }}&raquo;
-        .add
-            router-link.button(:to="{name:'create',params:{resource}}") Создать
-        table
-            tr
-                th(v-for="field in tableData.getFields()") {{ field.getLabel() }}
-                th Действия
-            tr(v-for="row in values")
-                td(v-for="field in tableData.getFields()") {{ field.valueToStr(row[field.getName()]) }}
-                td.actions
-                    router-link.button.edit(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
-                    router-link.button.delete(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
-    loading(v-else)
+    .wrapper
+        error(v-if="error && error.length > 0 " :error="error")
+        .table(v-if="isLoad")
+            h2 Ресурс &laquo;{{ resource }}&raquo;
+            .add
+                router-link.button(:to="{name:'create',params:{resource}}") Создать
+            table
+                tr
+                    th(v-for="field in tableData.getFields()") {{ field.getLabel() }}
+                    th Действия
+                tr(v-for="row in values")
+                    td(v-for="field in tableData.getFields()") {{ field.valueToStr(row[field.getName()]) }}
+                    td.actions
+                        router-link.button.edit(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
+                        router-link.button.delete(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
+        loading(v-if="isLoad && !(error && error.length>0)")
 </template>
 
 <script lang="ts">
@@ -21,6 +23,7 @@
     import resources from "@/resources";
     import {Table} from "@/abstracts/Table";
     import Loading from "@/components/Loading.vue";
+    import Error from "@/components/Error.vue";
 
     export default Vue.extend({
             name: "resource-table",
@@ -30,10 +33,11 @@
                     tableData: {} as Table,
                     fields: [] as FormField[],
                     values: [],
+                    error: [] as string[],
                     isLoad: false,
                 };
             },
-            components: {Loading},
+            components: {Loading, Error},
             mounted(): void {
                 this.resource = this.$route.params.resource;
                 this.updateData();
@@ -47,21 +51,21 @@
             },
             methods: {
                 updateData() {
+                    this.error = [];
                     const tableObject = resources.find((resource) => resource.name === this.resource);
                     if (tableObject) {
                         this.tableData = tableObject.forms.table;
+                        this.tableData.fetchValues()
+                            .then((data) => {
+                                    this.values = data;
+                                    this.isLoad = true;
+                                },
+                            );
                     } else {
-                        // console.log('404');
-                        // TODO Error 404
-                        // return this.$route.go('*')
+                        this.error = ['Такого ресурса нет'];
                     }
 
-                    this.tableData.fetchValues()
-                        .then((data) => {
-                                this.values = data;
-                                this.isLoad = true;
-                            },
-                        );
+
                 },
             },
         },

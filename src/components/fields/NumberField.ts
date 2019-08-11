@@ -10,7 +10,7 @@ export default Vue.extend({
         props: ['name', 'label', 'onChange', 'defaultValue'],
         watch: {
             value(value) {
-                this.onChange(this.name, value);
+                this.onChange(this.name, value || value===0 ? parseInt(value):null); // TODO error
             }, defaultValue(value) {
                 this.value = value;
             },

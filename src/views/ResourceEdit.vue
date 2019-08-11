@@ -15,7 +15,7 @@
                     submitter: {} as FormSubmitter,
                     fields: [] as FormField[],
                     id: null as number | null,
-                    values: {} as any,  // TODO Del
+                    values: {} as any,
                     isLoad: false,
                     resource: null as string | null,
                     error: [] as string[],
@@ -55,7 +55,6 @@
                             .then((data) => {
                                     this.values = data;
                                     this.isLoad = true;
-                                    // console.log('values',this.values)
                                 },
                             )
                             .catch((error) => this.error = ["Не удалось загрузить данные", error.text]);
@@ -66,9 +65,7 @@
 
                 },
                 onChange(name: string, value: any) {
-
                     this.values[name] = value;
-                    // console.log("value changed", this.values);
                 },
                 saveValues() {
                     this.isLoad = false;
