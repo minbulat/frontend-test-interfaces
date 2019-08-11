@@ -33,7 +33,7 @@ export abstract class EditForm extends AbstractForm {
         });
     }
 
-    public saveValues(submitter:FormSubmitter, values: any): Promise<any> {
+    public saveValues(submitter: FormSubmitter, values: any): Promise<any> {
         return submitter.submit(this, values);
 
     }

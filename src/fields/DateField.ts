@@ -24,6 +24,6 @@ export class DateField implements FormField {
     }
 
     public valueToStr(value: any): string {
-        return  value instanceof Date  ? moment(value).format("DD.MM.YYYY"):"";
+        return  value instanceof Date  ? moment(value).format("DD.MM.YYYY") : "";
     }
 }

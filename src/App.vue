@@ -6,19 +6,19 @@
         router-view
 </template>
 <script lang="ts">
-    import Vue from 'vue';
-    import resources from "@/resources";
+import Vue from 'vue';
+import resources from "@/resources";
 
 
-    export default Vue.extend({
-        name: 'app',
-        data: {
-            resources: {}
-        },
-        created(): void {
-            this.resources = resources
-        }
-    });
+export default Vue.extend({
+    name: 'app',
+    data: {
+        resources: {},
+    },
+    created(): void {
+        this.resources = resources;
+    },
+});
 </script>
 
 <style lang="stylus">

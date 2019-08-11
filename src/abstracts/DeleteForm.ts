@@ -15,9 +15,11 @@ export abstract class DeleteForm extends AbstractForm {
     }
 
     public deleteResource(): Promise<any> {
-        if (this.id)
+        if (this.id) {
             return new FormSubmitter().submit(this, {});
-        else
-            return Promise.reject('Ошибка при удалении: не указан ИД')
+        }
+        else {
+            return Promise.reject('Ошибка при удалении: не указан ИД');
+        }
     }
 }

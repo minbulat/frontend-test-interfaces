@@ -20,16 +20,16 @@ export default class NewsTable extends Table {
     public values: any;
 
     public fetchValues(): Promise<any> {
-        return super.fetchValues().then(data =>
+        return super.fetchValues().then((data) =>
             data.map((row: any) => {
                     // return row;
                     const r = row;
-                    if (r['date']) {
-                        r['date'] = new Date(row['date']);
+                    if (r.date) {
+                        r.date = new Date(row.date);
                         return r;
-                    } else return r
-                }
-            )
-        )
+                    } else { return r; }
+                },
+            ),
+        );
     }
 }

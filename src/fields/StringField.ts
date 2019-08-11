@@ -23,6 +23,6 @@ export class StringField implements FormField {
     }
 
     public valueToStr(value: any): string {
-        return  typeof value === "string"  ?value.toString():"";
+        return  typeof value === "string"  ? value.toString() : "";
     }
 }
