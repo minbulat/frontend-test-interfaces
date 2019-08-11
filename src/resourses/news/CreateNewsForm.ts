@@ -6,17 +6,17 @@ import {BooleanField} from '@/fields/BooleanField';
 import {CreateForm} from "@/abstracts/CreateForm";
 import {Method} from "axios";
 
-export class CreateNewsForm extends CreateForm {
-    protected url = 'https://crudpi.io/d39f7c/news';
-    protected method: Method = 'POST';
-    protected fields: FormField[] = [
+export default class CreateNewsForm extends CreateForm {
+    public url = 'https://crudpi.io/d39f7c/news';
+    public method: Method = 'POST';
+    public fields: FormField[] = [
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
         new StringField('author', 'Автор'),
         new NumberField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];
-    protected values: any;
+    public values: any;
 
     // public saveVales(values: any[]): Promise<any> {
     //     return new FormSubmitter().submit(this, values); // TODO values

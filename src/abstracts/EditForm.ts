@@ -1,5 +1,5 @@
 import {AbstractForm} from './AbstractForm';
-import FormSubmitter from "./FormSubmitter";
+import FormSubmitter from './FormSubmitter';
 import {Method} from 'axios';
 
 export abstract class EditForm extends AbstractForm {
@@ -18,6 +18,7 @@ export abstract class EditForm extends AbstractForm {
     public getDataFetchUrl(): string {
         return this.dataFetchUrl + this.id;
     }
+
     public getUrl(): string {
         return this.url + this.id;
     }

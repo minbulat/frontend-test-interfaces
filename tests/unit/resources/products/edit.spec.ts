@@ -1,12 +1,33 @@
-import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import EditProductForm from '@/resourses/products/EditProductForm';
 
-describe('HelloWorld.vue', () => {
-    it('renders props.msg when passed', () => {
-        const msg = 'new message';
-        const wrapper = shallowMount(HelloWorld, {
-            propsData: { msg },
-        });
-        expect(wrapper.text()).toMatch(msg);
+describe('ProductsEdit', () => {
+    it('setId сохраняет значения в id', () => {
+        const epf = new EditProductForm();
+        const value = 5;
+        epf.setId(value);
+        expect(epf.id).toEqual(value);
     });
+    it('getMethod возвращает значение PUT', () => {
+        const epf = new EditProductForm();
+        expect(epf.getMethod()).toEqual('PUT');
+    });
+    it('getDataFetchMethod возвращает значение GET', () => {
+        const epf = new EditProductForm();
+        expect(epf.getDataFetchMethod()).toEqual('GET');
+    });
+    it('fetchValues сохраняет значения в values', async () => {
+        const epf = new EditProductForm();
+        const values = {id: 4, name: 'name'};
+        epf.axios.request = () => Promise.resolve({data: values});
+        await epf.fetchValues();
+        expect(epf.values).toEqual(values);
+    });
+    // TODO Возвращает  values
+    // it('fetchValues сохраняет значения в values', async () => {
+    //     const epf = new EditProductForm();
+    //     const values = {id: 4, name: 'name'};
+    //     epf.axios.request = () => Promise.resolve({data: values});
+    //     await epf.fetchValues();
+    //     expect(epf.values).toEqual(values);
+    // });
 });

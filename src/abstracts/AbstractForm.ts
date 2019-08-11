@@ -5,11 +5,13 @@ import axios, {Method} from "axios";
 
 
 export abstract class AbstractForm implements Form {
+    // public axios: (config: any) => Promise<{ data: any }>;
+
     public axios: { request: (config: any) => Promise<any> };
-    protected abstract fields: FormField[];
-    protected abstract method: Method;
-    protected abstract url: string;
-    protected abstract values: any;
+    public abstract fields: FormField[];
+    public abstract method: Method;
+    public abstract url: string;
+    public abstract values: any;
 
     constructor() {
         this.axios = axios;

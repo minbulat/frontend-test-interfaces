@@ -2,7 +2,7 @@ import Form from '@/interfaces/forms/Form';
 import FormSubmitter from "@/abstracts/FormSubmitter";
 import axios from 'axios';
 
-export class ProductsFormSubmitter extends FormSubmitter {
+export default class ProductsFormSubmitter extends FormSubmitter {
     public submit(form: Form, values: any): Promise<any> {
         return axios.request({
             method: form.getMethod(),
