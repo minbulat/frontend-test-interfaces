@@ -16,6 +16,11 @@ import NewsFormSubmitter from '@/resources/news/NewsFormSubmitter';
 import {DeleteForm} from "@/abstracts/DeleteForm";
 import DeleteNewsForm from "@/resources/news/DeleteNewsForm";
 
+import CreateNotesForm from "@/resources/notes/CreateNotesForm";
+import EditNotesForm from "@/resources/notes/EditNotesForm";
+import DeleteNotesForm from "@/resources/notes/DeleteNotesForm";
+import NotesTable from "@/resources/notes/NotesTable";
+import NotesFormSubmitter from '@/resources/notes/NotesFormSubmitter';
 // importInjectZone - Do not delete!
 
 type resource = {
@@ -48,6 +53,16 @@ const resources: resource[] = [
             delete: new DeleteNewsForm(),
             submitter: new NewsFormSubmitter(),
             table: new NewsTable(),
+        },
+    },
+    {
+        name: 'notes',
+        forms: {
+            create: new CreateNotesForm(),
+            edit: new EditNotesForm(),
+            delete: new DeleteNotesForm,
+            submitter: new NotesFormSubmitter(),
+            table: new NotesTable(),
         },
     },
     // resourceInjectZone - Do not delete!

@@ -2,10 +2,24 @@
     #app
         #nav
             router-link.button(to="/") Home
-            router-link.button(to="/dashboard/products") Products
-            router-link.button(to="/dashboard/news") News
+            router-link.button(v-for="resource in resources" :to="{name: 'table', params: {resource: resource.name}}") {{resource.name}}
         router-view
 </template>
+<script lang="ts">
+    import Vue from 'vue';
+    import resources from "@/resources";
+
+
+    export default Vue.extend({
+        name: 'app',
+        data: {
+            resources: {}
+        },
+        created(): void {
+            this.resources = resources
+        }
+    });
+</script>
 
 <style lang="stylus">
     #app

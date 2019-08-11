@@ -1,5 +1,5 @@
 <template lang="pug">
-    .wrapper
+    div
         error(v-if="error && error.length > 0 " :error="error")
         .table(v-if="isLoad")
             h2 Ресурс &laquo;{{ resource }}&raquo;
@@ -14,7 +14,7 @@
                     td.actions
                         router-link.button.edit(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
                         router-link.button.delete(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
-        loading(v-if="isLoad && !(error && error.length>0)")
+        loading(v-if="!isLoad && !(error && error.length>0)")
 </template>
 
 <script lang="ts">
@@ -71,7 +71,7 @@
         },
     );
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
 
     table
         width: 100%;
@@ -104,5 +104,9 @@
 
     .actions
         text-align center;
+
+    .wrapper
+        max-width calc(100% - 20px);
+
 </style>
 
