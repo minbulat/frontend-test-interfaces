@@ -11,7 +11,7 @@ export default class CreateNewsForm extends CreateForm {
     public fields: FormField[] = [
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
-        new StringField('author', 'Автор'),
+        new StringField('author.name', 'Автор'),
         new DateField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];
