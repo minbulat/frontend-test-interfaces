@@ -5,7 +5,7 @@ import {BooleanField} from '@/fields/BooleanField';
 import {Table} from '@/abstracts/Table';
 import {Method} from 'axios';
 
-export default class <%= name %>Table extends Table {
+export default class <%= nameUpper %>Table extends Table {
     public url = 'https://crudpi.io/d39f7c/products';
     public method: Method = 'GET';
     public fields: FormField[] = [

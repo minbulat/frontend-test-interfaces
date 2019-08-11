@@ -1,17 +1,19 @@
-import FormSubmitter from "@/abstracts/FormSubmitter";
-import {CreateForm} from "@/abstracts/CreateForm";
-import {EditForm} from "@/abstracts/EditForm";
-import {Table} from "@/abstracts/Table";
+import FormSubmitter from '@/abstracts/FormSubmitter';
+import {CreateForm} from '@/abstracts/CreateForm';
+import {EditForm} from '@/abstracts/EditForm';
+import {Table} from '@/abstracts/Table';
 
-import CreateProductForm from "@/resources/products/CreateProductForm";
-import EditProductForm from "@/resources/products/EditProductForm";
-import ProductsFormSubmitter from "@/resources/products/ProductsFormSubmitter";
-import ProductsTable from "@/resources/products/ProductsTable";
+import CreateProductForm from '@/resources/products/CreateProductForm';
+import EditProductForm from '@/resources/products/EditProductForm';
+import ProductsFormSubmitter from '@/resources/products/ProductsFormSubmitter';
+import ProductsTable from '@/resources/products/ProductsTable';
 
-import CreateNewsForm from "@/resources/news/CreateNewsForm";
-import EditNewsForm from "@/resources/news/EditNewsForm";
-import NewsTable from "@/resources/news/NewsTable";
+import CreateNewsForm from '@/resources/news/CreateNewsForm';
+import EditNewsForm from '@/resources/news/EditNewsForm';
+import NewsTable from '@/resources/news/NewsTable';
 import NewsFormSubmitter from '@/resources/news/NewsFormSubmitter';
+
+// importInjectZone - Do not delete!
 
 // TODO interface to type
 interface IResource {
@@ -46,6 +48,7 @@ const resources: IResource[] = [
             table: new NewsTable(),
         },
     },
+    // resourceInjectZone - Do not delete!
 ];
 
 export default resources;

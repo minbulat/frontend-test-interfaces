@@ -2,7 +2,7 @@ import FormField from '@/interfaces/forms/FormField';
 import {StringField} from '@/fields/StringField';
 import {NumberField} from '@/fields/NumberField';
 import {BooleanField} from '@/fields/BooleanField';
-import ProductsFormSubmitter from './ResourceFormSubmitter';
+import <%= nameUpper %>FormSubmitter from './<%= nameUpper %>FormSubmitter';
 import {CreateForm} from "@/abstracts/CreateForm";
 import {Method} from "axios";
 
@@ -18,7 +18,7 @@ export default class Create<%= nameUpper %>Form extends CreateForm {
     public values: any;
 
     public saveVales(values: any[]): Promise<any> {
-        return new ProductsFormSubmitter().submit(this, values); // TODO values
+        return new <%= nameUpper %>FormSubmitter().submit(this, values); // TODO values
 
     }
 }
