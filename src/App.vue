@@ -36,6 +36,7 @@
         text-decoration none
         color: white
         border none
+        cursor pointer
 
     .wrapper
         max-width calc(100% - 20px)

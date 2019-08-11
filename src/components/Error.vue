@@ -1,7 +1,6 @@
 <template lang="pug">
     .error
         p(v-for="err in error") {{ err }}
-    </div>
 </template>
 
 <script lang="ts">

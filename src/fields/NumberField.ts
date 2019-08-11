@@ -21,7 +21,8 @@ export class NumberField implements FormField {
     public getName(): string {
         return this.name;
     }
+
     public valueToStr(value: any): string {
-        return typeof value === "number"  ?value.toString():"";
+        return value || value === 0 ? typeof value === "number" ? value.toString() : "invalid value" : "";
     }
 }

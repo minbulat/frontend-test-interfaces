@@ -11,6 +11,7 @@ module.exports = (api, options) => {
                 const oldNewNames = [
                     {old: 'CreateResourceForm', new: `Create${nameUpper}Form`},
                     {old: 'EditResourceForm', new: `Edit${nameUpper}Form`},
+                    {old: 'DeleteResourceForm', new: `Delete${nameUpper}Form`},
                     {old: 'ResourceFormSubmitter', new: `${nameUpper}FormSubmitter`},
                     {old: 'ResourceTable', new: `${nameUpper}Table`}];
                 oldNewNames.forEach(names =>
@@ -25,13 +26,14 @@ module.exports = (api, options) => {
         forms: {
             create: new Create${nameUpper}Form(),
             edit: new Edit${nameUpper}Form(),
-            // delete: new Delete${nameUpper}Form,
+            delete: new Delete${nameUpper}Form,
             submitter: new ${nameUpper}FormSubmitter(),
             table: new ${nameUpper}Table(),
         },
     },\n    `;
                 const imports = [`import Create${nameUpper}Form from "@/resources/${nameLower}/Create${nameUpper}Form";`,
                     `import Edit${nameUpper}Form from "@/resources/${nameLower}/Edit${nameUpper}Form";`,
+                    `import Delete${nameUpper}Form from "@/resources/${nameLower}/Delete${nameUpper}Form";`,
                     `import ${nameUpper}Table from "@/resources/${nameLower}/${nameUpper}Table";`,
                     `import ${nameUpper}FormSubmitter from '@/resources/${nameLower}/${nameUpper}FormSubmitter';`,].join('\n') + '\n';
 
@@ -43,9 +45,11 @@ module.exports = (api, options) => {
             })
         } else {
             console.log('Eeeee222')
+            // TODO else
         }
     } else {
         console.log('Eeeee')
+        // TODO else
     }
 
 

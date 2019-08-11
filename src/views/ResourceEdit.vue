@@ -4,12 +4,15 @@
     import resources from "@/resources";
     import {EditForm} from "@/abstracts/EditForm";
     import Error from "@/components/Error.vue";
+    import Loading from "@/components/Loading.vue";
+    import FormSubmitter from "@/abstracts/FormSubmitter";
 
     export default Vue.extend({
             name: "resource-edit",
             data() {
                 return {
                     form: {} as EditForm,
+                    submitter: {} as FormSubmitter,
                     fields: [] as FormField[],
                     id: null as number | null,
                     values: {} as any,  // TODO Del
@@ -39,6 +42,7 @@
                     const tableObject = resources.find((resource) => resource.name === this.resource);
                     if (tableObject) {
                         this.form = tableObject.forms.edit;
+                        this.submitter = tableObject.forms.submitter;
                     } else {
                         // console.log('404');
                         // TODO Error 404
@@ -69,7 +73,7 @@
                 saveValues() {
                     this.isLoad = false;
                     this.error = [];
-                    this.form.saveValues(this.values)
+                    this.form.saveValues(this.submitter, this.values)
                         .then(() => {
                             this.$router.push({name: 'table', params: {resource: this.resource as string}});
                         })
@@ -114,7 +118,7 @@
 
                                 }, "Изменить"),
                             ]) : null,
-
+                        !this.isLoad ? createElement(Loading) : null,
                     ],
                 );
 

@@ -4,11 +4,13 @@ import {BooleanField} from '@/fields/BooleanField';
 import {Table} from "@/abstracts/Table";
 import {Method} from "axios";
 import {DateField} from "@/fields/DateField";
+import {NumberField} from "@/fields/NumberField";
 
 export default class NewsTable extends Table {
     public url = 'https://crudpi.io/d39f7c/news';
     public method: Method = 'GET';
     public fields: FormField[] = [
+        new NumberField('id', 'ИД'),
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
         new StringField('author', 'Автор'),

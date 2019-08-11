@@ -12,6 +12,7 @@
                 td.actions
                     router-link.button.edit(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
                     router-link.button.delete(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
+    loading(v-else)
 </template>
 
 <script lang="ts">
@@ -19,6 +20,7 @@
     import FormField from "@/interfaces/forms/FormField";
     import resources from "@/resources";
     import {Table} from "@/abstracts/Table";
+    import Loading from "@/components/Loading.vue";
 
     export default Vue.extend({
             name: "resource-table",
@@ -31,6 +33,7 @@
                     isLoad: false,
                 };
             },
+            components: {Loading},
             mounted(): void {
                 this.resource = this.$route.params.resource;
                 this.updateData();
@@ -94,6 +97,7 @@
 
     .button.edit
         background var(--color-info)
+
     .actions
         text-align center;
 </style>
