@@ -6,6 +6,7 @@ export abstract class Table extends AbstractForm {
         return this.axios.request({
             method: this.getMethod(),
             url: this.getUrl(),
-        }).then((response) => response.data);
+        })
+            .then((response) => response.data);
     }
 }

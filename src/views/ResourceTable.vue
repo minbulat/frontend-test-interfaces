@@ -10,7 +10,7 @@
                     th(v-for="field in tableData.getFields()") {{ field.getLabel() }}
                     th Действия
                 tr(v-for="row in values")
-                    td(v-for="field in tableData.getFields()") {{ field.valueToStr(row[field.getName()]) }}
+                    td(v-for="field in tableData.getFields()") {{ field.valueToStr(pick(field.getName(), row))  }}
                     td.actions
                         router-link.button.edit(:to="{name:'edit', params: {id: row['id'], resource}}") Изменить
                         router-link.button.delete(:to="{name:'delete', params: {id: row['id'], resource}}") Удалить
@@ -24,6 +24,7 @@
     import {Table} from "@/abstracts/Table";
     import Loading from "@/components/Loading.vue";
     import Error from "@/components/Error.vue";
+    const dot = require('dot-object');
 
     export default Vue.extend({
             name: "resource-table",
@@ -50,6 +51,9 @@
                 next();
             },
             methods: {
+                pick(str:string, obj: any){
+                    return dot.pick(str, obj);
+                },
                 updateData() {
                     this.error = [];
                     const tableObject = resources.find((resource) => resource.name === this.resource);

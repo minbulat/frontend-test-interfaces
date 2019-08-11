@@ -13,7 +13,8 @@ export default class NewsTable extends Table {
         new NumberField('id', 'ИД'),
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
-        new StringField('author', 'Автор'),
+        new StringField('author.name', 'Имя автора'),
+        new StringField('author.work.title', 'Место работы автора'),
         new DateField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];

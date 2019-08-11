@@ -21,7 +21,7 @@ export default Vue.extend({
                 this.value = this.defaultValue;
             }
 
-            this.onChange(this.name, this.value);
+
         },
     },
 );

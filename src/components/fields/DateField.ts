@@ -20,8 +20,6 @@ export default Vue.extend({
             if (this.defaultValue) {
                 this.value = this.defaultValue;
             }
-
-            this.onChange(this.name, this.value);
         },
     },
 );

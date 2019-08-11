@@ -6,6 +6,7 @@ import {EditForm} from "@/abstracts/EditForm";
 import Error from "@/components/Error.vue";
 import Loading from "@/components/Loading.vue";
 import FormSubmitter from "@/abstracts/FormSubmitter";
+const dot = require('dot-object');
 
 export default Vue.extend({
         name: "resource-edit",
@@ -38,6 +39,10 @@ export default Vue.extend({
             next();
         },
         methods: {
+
+            pick(str:string, obj: any){
+                return dot.pick(str, obj);
+            },
             updateData() {
                 const tableObject = resources.find((resource) => resource.name === this.resource);
                 if (tableObject) {
@@ -54,6 +59,7 @@ export default Vue.extend({
                     this.form.fetchValues()
                         .then((data) => {
                                 this.values = data;
+                                console.log(this.values);
                                 this.isLoad = true;
                             },
                         )

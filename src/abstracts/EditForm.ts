@@ -24,11 +24,12 @@ export abstract class EditForm extends AbstractForm {
     }
 
     public fetchValues(): Promise<any> {
+        const dot = require('dot-object');
         return this.axios.request({
             method: this.getDataFetchMethod(),
             url: this.getDataFetchUrl(),
         }).then((response) => {
-            this.values = response.data;
+            this.values = dot.dot(response.data);
             return this.values;
         });
     }
