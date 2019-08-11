@@ -1,4 +1,5 @@
 import FormField from './FormField';
+import {Method} from 'axios';
 
 export default interface Form {
   /**
@@ -6,7 +7,7 @@ export default interface Form {
    *
    * @return {string}
    */
-  getMethod(): string;
+  getMethod(): Method;
 
   /**
    * Возвращает URL, на который должна быть отправлена форма.

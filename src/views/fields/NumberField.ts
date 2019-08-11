@@ -4,7 +4,7 @@ export default Vue.extend({
         name: 'number-field',
         data() {
             return {
-                value: '',
+                value: null as null | number,
             };
         },
         props: ['name', 'label', 'onChange', 'defaultValue'],
@@ -16,7 +16,11 @@ export default Vue.extend({
             },
         },
         mounted(): void {
-            this.value = this.defaultValue;
+            if (this.defaultValue) {
+                this.value = this.defaultValue;
+            }
+
+            this.onChange(this.name, this.value);
         },
     },
 )

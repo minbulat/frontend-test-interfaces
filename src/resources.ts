@@ -11,6 +11,7 @@ import {ProductsTable} from "@/resourses/products/ProductsTable";
 import {CreateNewsForm} from "@/resourses/news/CreateNewsForm";
 import {EditNewsForm} from "@/resourses/news/EditNewsForm";
 import {NewsTable} from "@/resourses/news/NewsTable";
+import {NewsFormSubmitter} from '@/resourses/news/NewsFormSubmitter';
 
 // TODO interface to type
 interface IResource {
@@ -41,7 +42,7 @@ const resources: IResource[] = [
             create: new CreateNewsForm(),
             edit: new EditNewsForm(),
             // delete: new Delete,
-            submitter: new FormSubmitter(),
+            submitter: new NewsFormSubmitter(),
             table: new NewsTable(),
         },
     },
