@@ -1,9 +1,7 @@
-import {AbstractForm} from '../../abstracts/AbstractForm';
 import FormField from '@/interfaces/forms/FormField';
 import {StringField} from '@/fields/StringField';
 import {NumberField} from '@/fields/NumberField';
 import {BooleanField} from '@/fields/BooleanField';
-import {ProductsFormSubmitter} from './ProductsFormSubmitter';
 import {Table} from "@/abstracts/Table";
 import {Method} from "axios";
 
