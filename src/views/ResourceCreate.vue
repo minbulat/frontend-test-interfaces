@@ -62,30 +62,38 @@
             },
             render(createElement): VNode {
                 return createElement("div",
-                    {class: ['create']},
+                    {class: ['create', 'wrapper']},
                     [
+                        this.isLoad ? createElement("h2",
+                        `Создание ресурса «${this.resource}»`
+                        ) : null,
                         this.error.length ? createElement(Error, {
                             props: {
                                 error: this.error,
                             },
                         }) : null,
-                        this.isLoad ? this.form.getFields()
-                            .map((field) => {
-                                return createElement(field.getComponent(), {
-                                    props: {
-                                        label: field.getLabel(),
-                                        name: field.getName(),
-                                        onChange: this.onChange,
-                                    },
-
-                                });
-                            }) : null,
-                        this.isLoad ? createElement("button", {
+                        this.isLoad ? createElement("form", {
                             on: {
-                                click: this.saveValues,
-                            },
+                                submit: this.saveValues,
+                            }
+                        }, [
+                            this.form.getFields()
+                                .map((field) => {
+                                    return createElement(field.getComponent(), {
+                                        props: {
+                                            label: field.getLabel(),
+                                            name: field.getName(),
+                                            onChange: this.onChange,
+                                        },
 
-                        }, "Сохранить") : null,
+                                    });
+                                }),
+                            createElement("button", {
+                                class: ['button'],
+                            }, "Создать")
+                        ]) : null,
+
+
                     ],
                 );
             },
@@ -94,7 +102,10 @@
 </script>
 <style lang="stylus">
     .create
-        text-align left
-
+        .button
+            width 100%
+            font-size 20px
+            padding 20px 30px
+            margin 20px 0
 </style>
 

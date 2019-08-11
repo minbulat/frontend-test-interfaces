@@ -1,8 +1,7 @@
 import FormField from '@/interfaces/forms/FormField';
 import {StringField} from '@/fields/StringField';
-import {NumberField} from '@/fields/NumberField';
 import {BooleanField} from '@/fields/BooleanField';
-// import FormSubmitter from '@/abstracts/FormSubmitter';
+import {DateField} from '@/fields/DateField';
 import {CreateForm} from "@/abstracts/CreateForm";
 import {Method} from "axios";
 
@@ -13,7 +12,7 @@ export default class CreateNewsForm extends CreateForm {
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
         new StringField('author', 'Автор'),
-        new NumberField('date', 'Дата'),
+        new DateField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];
     public values: any;

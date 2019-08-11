@@ -1,20 +1,33 @@
 import FormField from '@/interfaces/forms/FormField';
 import {StringField} from '@/fields/StringField';
-import {NumberField} from '@/fields/NumberField';
 import {BooleanField} from '@/fields/BooleanField';
 import {Table} from "@/abstracts/Table";
 import {Method} from "axios";
+import {DateField} from "@/fields/DateField";
 
-export default class  NewsTable extends Table {
+export default class NewsTable extends Table {
     public url = 'https://crudpi.io/d39f7c/news';
     public method: Method = 'GET';
     public fields: FormField[] = [
         new StringField('name', 'Название'),
         new StringField('text', 'Текст'),
         new StringField('author', 'Автор'),
-        new NumberField('date', 'Дата'),
+        new DateField('date', 'Дата'),
         new BooleanField('isPublic', 'Опубликовано'),
     ];
     public values: any;
 
+    public fetchValues(): Promise<any> {
+        return super.fetchValues().then(data =>
+            data.map((row: any) => {
+                    // return row;
+                    const r = row;
+                    if (r['date']) {
+                        r['date'] = new Date(row['date']);
+                        return r;
+                    } else return r
+                }
+            )
+        )
+    }
 }

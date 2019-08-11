@@ -1,5 +1,5 @@
 import FormField from "@/interfaces/forms/FormField";
-import BF from "@/views/fields/BooleanField";
+import BF from "@/components/fields/BooleanField";
 
 export class BooleanField implements FormField {
     public label: string;
@@ -20,6 +20,10 @@ export class BooleanField implements FormField {
 
     public getName(): string {
         return this.name;
+    }
+
+    public valueToStr(value: any): string {
+        return typeof value === "boolean" ? value ? 'Да' : 'Нет' : '';
     }
 
 }

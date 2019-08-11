@@ -82,31 +82,39 @@
             },
             render(createElement): VNode {
                 return createElement("div",
-                    {class: ['edit']},
+                    {class: ['edit', 'wrapper']},
                     [
                         this.error.length ? createElement(Error, {
                             props: {
                                 error: this.error,
                             },
                         }) : null,
-                        this.isLoad ? this.form.getFields()
-                            .map((field) => {
-                                return createElement(field.getComponent(), {
-                                    props: {
-                                        label: field.getLabel(),
-                                        name: field.getName(),
-                                        defaultValue: this.form.getValues()[field.getName()],
-                                        onChange: this.onChange,
-                                    },
-
-                                });
-                            }) : null,
-                        this.isLoad ? createElement("button", {
-                            on: {
-                                click: this.saveValues,
+                        this.isLoad ? createElement("h2",
+                            `Редактирование ресурса «${this.resource}», id:${this.id}`):null,
+                        this.isLoad ? createElement("form", {
+                                on: {
+                                    submit: this.saveValues,
+                                }
                             },
+                            [
+                                this.form.getFields()
+                                    .map((field) => {
+                                        return createElement(field.getComponent(), {
+                                            props: {
+                                                label: field.getLabel(),
+                                                name: field.getName(),
+                                                defaultValue: this.form.getValues()[field.getName()],
+                                                onChange: this.onChange,
+                                            },
 
-                        }, "Сохранить") : null,
+                                        });
+                                    }),
+                                createElement("button", {
+                                    class: ['button'],
+
+                                }, "Изменить"),
+                            ]) : null,
+
                     ],
                 );
 
@@ -116,7 +124,10 @@
 </script>
 <style lang="stylus">
     .edit
-        text-align left
-
+        .button
+            width 100%
+            font-size 20px
+            padding 20px 30px
+            margin 20px 0
 </style>
 

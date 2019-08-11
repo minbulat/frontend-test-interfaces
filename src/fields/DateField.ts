@@ -1,7 +1,8 @@
 import FormField from '@/interfaces/forms/FormField';
-import SF from '@/components/fields/StringField';
+import DF from '@/components/fields/DateField';
+import moment from "moment";
 
-export class StringField implements FormField {
+export class DateField implements FormField {
     public label: string;
     public name: string;
 
@@ -11,7 +12,7 @@ export class StringField implements FormField {
     }
 
     public getComponent(): any {
-        return SF;
+        return DF;
     }
 
     public getLabel(): string {
@@ -23,6 +24,6 @@ export class StringField implements FormField {
     }
 
     public valueToStr(value: any): string {
-        return  typeof value === "string"  ?value.toString():"";
+        return  value instanceof Date  ? moment(value).format("DD.MM.YYYY"):"";
     }
 }

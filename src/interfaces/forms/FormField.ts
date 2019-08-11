@@ -21,4 +21,11 @@ export default interface FormField {
    * @return {any}
    */
   getComponent(): any;
+
+  /**
+   * Возвращает текстовое представление значения поля
+   *
+   * @return {string}
+   */
+  valueToStr(value: any): string;
 }

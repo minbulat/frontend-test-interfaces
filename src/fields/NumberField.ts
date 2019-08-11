@@ -1,5 +1,5 @@
 import FormField from "@/interfaces/forms/FormField";
-import NF from "@/views/fields/NumberField";
+import NF from "@/components/fields/NumberField";
 
 export class NumberField implements FormField {
     public label: string;
@@ -21,5 +21,7 @@ export class NumberField implements FormField {
     public getName(): string {
         return this.name;
     }
-
+    public valueToStr(value: any): string {
+        return typeof value === "number"  ?value.toString():"";
+    }
 }
